@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-12 col-xl-8" *ngIf="userdata">
+    <!-- table card start -->
+    <div class="card table-card" *ngIf="rolewiseUserData">
+      <div class="">
+        <div class="row-table" *ngIf="rolewiseUserData.role == 0 || rolewiseUserData.role == 1">
+          <div class="col-sm-6 card-block-big br">
+            <div class="row">
+              <div class="col-sm-4">
+                <i class="fa fa-user text-success"></i>
+              </div>
+              <div class="col-sm-8 text-center">
+                <h5>{{userdata.total_trainee}}</h5>
+                <span>Trainers</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 card-block-big">
+            <div class="row">
+              <div class="col-sm-4">
+                <i class="fa fa-user text-danger"></i>
+              </div>
+              <div class="col-sm-8 text-center">
+                <h5>{{userdata.active_trainee}}</h5>
+                <span>Active Trainers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div class="row-table" *ngIf="rolewiseUserData.role == 0 || rolewiseUserData.role == 2">
+          <div class="col-sm-6 card-block-big br">
+            <div class="row">
+              <div class="col-sm-4">
+                <i class="fa fa-user text-info"></i>
+              </div>
+              <div class="col-sm-8 text-center">
+                <h5>{{userdata.total_member}}</h5>
+                <span>Members</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 card-block-big">
+            <div class="row">
+              <div class="col-sm-4">
+                <i class="fa fa-user text-warning"></i>
+              </div>
+              <div class="col-sm-8 text-center">
+                <h5>{{userdata.active_member}}</h5>
+                <span>Active Members</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- table card end -->
+  </div>

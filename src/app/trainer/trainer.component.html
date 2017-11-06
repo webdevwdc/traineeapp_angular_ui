@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-sm-12">
+
+    <app-card [blockClass]="'table-border-style'" [classHeader]="true">
+
+      <ngx-datatable class="data-table fullscreen" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0" [rowHeight]="50"
+        [scrollbarV]="true" [scrollbarH]="true" [rows]="fullScreenRow">
+        <ngx-datatable-column name="Email" prop="email"></ngx-datatable-column>
+        <ngx-datatable-column name="First Name" prop="first_name"></ngx-datatable-column>
+        <ngx-datatable-column name="Last Name" prop="last_name"></ngx-datatable-column>
+        <ngx-datatable-column name="Gender" prop="gender"></ngx-datatable-column>
+        <ngx-datatable-column name="Verified" prop="is_verify">
+          <!-- <span *ngIf="row.is_verify == 'yes'">Verified</span>
+          <span *ngIf="row.is_verify == 'no'">Not Verified</span> -->
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Actions" *ngIf="userRole==0" sortable="false" prop="_id">
+          <template let-column="column" let-sort="sortFn">
+            {{column.name}}
+          </template>
+          <template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button md-icon-button (click)="edit(value)">
+            <i class="fa fa-pencil"></i>
+        </button>
+            <button md-icon-button (click)="delete(value)" *ngIf="row.is_deleted == 'no'">
+            <i class="fa fa-trash"></i>
+        </button>
+          </template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </app-card>
+  </div>
+</div>

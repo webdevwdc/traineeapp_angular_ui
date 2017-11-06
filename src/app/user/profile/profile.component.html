@@ -1,0 +1,263 @@
+<!--profile cover start-->
+<div class="row" *ngIf="userData">
+  <div class="col-lg-12">
+    <div class="cover-profile">
+      <div class="profile-bg-img">
+        <img class="profile-bg-img img-fluid" src="assets/images/user-profile/bg-img1.jpg" alt="bg-img">
+        <div class="card-body user-info">
+          <div class="col-md-12">
+            <div class="media-left">
+              <a href="javascript:;" class="profile-image">
+                <img class="user-img img-circle" src="{{userImage}}" alt="user-img" (click)="file.click()">
+              </a>
+              <input #file type="file" accept="image/*" (change)="uploadImage(file.files)" style="display:none">
+            </div>
+            <div class="media-body row">
+              <div class="col-lg-12">
+                <div class="user-title">
+                  <h2>{{userData.first_name}} {{userData.last_name}}</h2>
+                  <span class="text-white" *ngIf="userData.role == 1">Trainer</span>
+                  <span class="text-white" *ngIf="userData.role == 2">Member</span>
+                </div>
+              </div>
+              <!-- <div>
+                <div class="pull-right cover-btn">
+                  <button type="button" class="btn btn-primary m-b-10 m-r-10"><i class="icofont icofont-plus"></i> Follow</button>
+                  <button type="button" class="btn btn-primary m-b-10"><i class="icofont icofont-ui-messaging"></i> Message</button>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--profile cover end-->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="md-tabs" *ngIf="userData">
+      <ngb-tabset>
+        <ngb-tab title="Personal Info">
+          <ng-template ngbTabContent>
+
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <!-- personal card start -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text">About Me</h5>
+                  <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
+                    <i class="icofont {{ editProfileIcon }}"></i>
+                  </button>
+                </div>
+                <div class="card-body">
+                  <div class="view-info" *ngIf="editProfile">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="general-info">
+                          <div class="row">
+                            <div class="col-lg-6 col-xl-6">
+                              <table class="table m-0 table-responsive">
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">Full Name</th>
+                                    <td>{{userData.showfirst_name}} {{userData.showlast_name}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Gender</th>
+                                    <td>{{userData.showgender}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Birth Date</th>
+                                    <td>{{userData.showdob}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Location</th>
+                                    <td>{{userData.showaddress}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <!-- end of table col-lg-6 -->
+                            <div class="col-lg-6 col-xl-6">
+                              <table class="table table-responsive">
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">Email</th>
+                                    <td><a href="javascript:;">{{userData.showemail}}</a></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Mobile Number</th>
+                                    <td>{{userData.showphone_number}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Twitter</th>
+                                    <td>{{userData.showtwitter}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Skype</th>
+                                    <td>{{userData.showskype}}</td>
+                                  </tr>
+
+                                </tbody>
+                              </table>
+                            </div>
+                            <!-- end of table col-lg-6 -->
+                          </div>
+                          <!-- end of row -->
+                        </div>
+                        <!-- end of general info -->
+                      </div>
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of view-info -->
+                  <div class="edit-info" *ngIf="!editProfile">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="general-info">
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <table class="table">
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                        <input type="text" class="form-control" placeholder="First Name" [(ngModel)]="userData.first_name">
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                        <input type="text" class="form-control" placeholder="Surname" [(ngModel)]="userData.last_name">
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <div class="form-radio">
+                                        <div class="group-add-on">
+                                          <div class="radio radiofill radio-inline">
+                                            <label>
+                                            <input type="radio" name="radio" [(ngModel)]="userData.gender" value="male"><i class="helper"></i> Male
+                                          </label>
+                                          </div>
+                                          <div class="radio radiofill radio-inline">
+                                            <label>
+                                            <input type="radio" name="radio" [(ngModel)]="userData.gender" value="female"><i class="helper"></i> Female
+                                          </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+
+                                      <div class="input-group">
+                                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="userData.dob">
+                                      </div>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
+                                        <input type="text" class="form-control" placeholder="Address" [(ngModel)]="userData.address">
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <!-- end of table col-lg-6 -->
+                            <div class="col-lg-6">
+                              <table class="table">
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="icofont icofont-mobile-phone"></i></span>
+                                        <input type="text" class="form-control" [(ngModel)]="userData.phone_number" placeholder="Mobile Number">
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="icofont icofont-social-twitter"></i></span>
+                                        <input type="text" class="form-control" [(ngModel)]="userData.twitter" placeholder="Twitter Id">
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <div class="input-group">
+                                        <span class="input-group-addon"><i class="icofont icofont-social-skype"></i></span>
+                                        <input type="email" class="form-control" [(ngModel)]="userData.skype" placeholder="Skype Id">
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <!-- end of table col-lg-6 -->
+                          </div>
+                          <!-- end of row -->
+                          <div class="text-center">
+                            <a href="javascript:;" class="btn btn-primary waves-effect waves-light m-r-20" (click)="saveUser()">Save</a>
+                            <a href="javascript:;" id="edit-cancel" class="btn btn-default waves-effect" (click)="toggleEditProfile()">Cancel</a>
+                          </div>
+                        </div>
+                        <!-- end of edit info -->
+                      </div>
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of edit-info -->
+                </div>
+                <!-- end of card-body -->
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h5 class="card-header-text">Description About Me</h5>
+                      <button id="edit-info-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditAbout()">
+                        <i class="icofont {{ editAboutIcon }}"></i>
+                      </button>
+                    </div>
+                    <div class="card-body user-desc">
+                      <div class="view-desc" *ngIf="editAbout">
+                        <div [innerHTML]="userData.showabout_me"></div>
+                      </div>
+                      <div class="edit-desc" *ngIf="!editAbout">
+                        <div class="col-md-12">
+                          <quill-editor [(ngModel)]="userData.about_me" [options]="editorConfig" (blur)="onEditorBlured($event)" (focus)="onEditorFocused($event)"
+                            (ready)="onEditorCreated($event)" (change)="onContentChanged($event)">
+                          </quill-editor>
+                        </div>
+                        <div class="text-center">
+                          <a href="javascript:;" class="btn btn-primary waves-effect waves-light m-r-20 m-t-20" (click)="saveUserAbout()">Save</a>
+                          <a href="javascript:;" id="edit-cancel-btn" class="btn btn-default waves-effect m-t-20" (click)="toggleEditAbout()">Cancel</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- personal card end-->
+            </div>
+          </ng-template>
+        </ngb-tab>
+
+      </ngb-tabset>
+    </div>
+  </div>
+</div>
